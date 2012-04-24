@@ -1,16 +1,17 @@
+%define debug_package %{nil}
 
 Name:           lv2
 Version:        1.0.0
-Release:        1
+Release:        2
 Summary:        Audio Plugin Standard
 Group:          System/Libraries
 
 # lv2specgen template.html is CC-AT-SA
 License:        ISC
 URL:            http://lv2plug.in
-Source0:	http://lv2plug.in/spec/lv2-%{version}.tar.bz2
+Source0:        http://lv2plug.in/spec/lv2-%{version}.tar.bz2
 
-# this package replaces lv2core 
+# this package replaces lv2core
 Provides:       lv2core = 6.0-4
 Obsoletes:      lv2core < 6.0-4
 Provides:       lv2-ui = 2.4-5
@@ -18,7 +19,7 @@ Obsoletes:      lv2-ui < 2.4-5
 
 %description
 LV2 is a standard for plugins and matching host applications, mainly
-targeted at audio processing and generation.  
+targeted at audio processing and generation.
 
 There are a large number of open source and free software synthesis
 packages in use or development at this time. This API ('LV2') attempts
@@ -63,12 +64,11 @@ DESTDIR=%buildroot ./waf -vv install
 
 %files
 %doc COPYING NEWS README
-%{_libdir}/%{name}/
-%exclude %{_libdir}/%{name}/*/*.[ch]
+%{_libdir}/%{name}/*/*.[ch]
+%{_libdir}/%{name}/*/*.ttl
 
 %files devel
 %{_includedir}/%{name}.h
 %{_includedir}/%{name}/
-%{_libdir}/%{name}/*/*.[hc]
 %{_libdir}/pkgconfig/lv2core.pc
 %{_libdir}/pkgconfig/%{name}.pc
