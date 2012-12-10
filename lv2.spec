@@ -72,3 +72,14 @@ DESTDIR=%buildroot ./waf -vv install
 %{_includedir}/%{name}/
 %{_libdir}/pkgconfig/lv2core.pc
 %{_libdir}/pkgconfig/%{name}.pc
+
+
+%changelog
+* Tue Apr 24 2012 Frank Kober <emuse@mandriva.org> 1.0.0-2
++ Revision: 793222
+- keep extension bundle integrity intact as required by README
+
+* Mon Apr 23 2012 Alexander Khrukin <akhrukin@mandriva.org> 1.0.0-1
++ Revision: 792871
+- imported package lv2
+
