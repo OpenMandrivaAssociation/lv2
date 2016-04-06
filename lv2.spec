@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:		lv2
-Version:	1.4.0
-Release:	4
+Version:	1.12.0
+Release:	1
 Summary:	Audio Plugin Standard
 Group:		System/Libraries
 
@@ -10,6 +10,7 @@ Group:		System/Libraries
 License:	ISC
 URL:		http://lv2plug.in
 Source0:	http://lv2plug.in/spec/lv2-%{version}.tar.bz2
+Source1:	lv2.rpmlintrc
 
 # this package replaces lv2core
 Provides:	lv2core = 6.0-4
@@ -35,11 +36,9 @@ LADSPA which many hosts have outgrown.
 Summary:	API for the LV2 Audio Plugin Standard
 Group:		Development/C
 
-Requires:	%{name}%{?_isa} = %{version}-%{release}
-Provides:	lv2core-devel = 6.0-4
-Obsoletes:	lv2core-devel < 6.0-4
-Provides:	lv2-ui-devel = 2.4-5
-Obsoletes:	lv2-ui-devel < 2.4-5
+Requires:	%{name} = %{EVRD}
+Provides:	lv2core-devel = %{EVRD}
+Provides:	lv2-ui-devel = %{EVRD}
 
 BuildRequires:	pkgconfig(sndfile) >= 1.0.0
 
@@ -55,20 +54,21 @@ header file.
 %setup -q
 
 %build
-./waf configure -vv --prefix=%{_prefix} --libdir=%{_libdir} --debug --no-plugins
+./waf configure -vv --prefix=%{_prefix} --libdir=%{_libdir} --debug --no-plugins --lv2dir=%{_libdir}/%{name}
 ./waf -vv %{?_smp_mflags}
 
 %install
 DESTDIR=%{buildroot} ./waf -vv install
 
 %files
-%doc COPYING NEWS README
 %{_libdir}/%{name}/*/*.[ch]
 %{_libdir}/%{name}/*/*.ttl
 
 %files devel
+%doc COPYING NEWS
+%{_bindir}/lv2specgen.py
 %{_includedir}/%{name}.h
 %{_includedir}/%{name}/
+%{_datadir}/lv2specgen/
 %{_libdir}/pkgconfig/lv2core.pc
 %{_libdir}/pkgconfig/%{name}.pc
-
