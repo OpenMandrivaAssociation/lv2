@@ -54,11 +54,11 @@ header file.
 %setup -q
 
 %build
-./waf configure -vv --prefix=%{_prefix} --libdir=%{_libdir} --debug --no-plugins --lv2dir=%{_libdir}/%{name}
-./waf -vv %{?_smp_mflags}
+%{__python2} ./waf configure -vv --prefix=%{_prefix} --libdir=%{_libdir} --debug --no-plugins --lv2dir=%{_libdir}/%{name} CC=%{__cc}
+%{__python2} ./waf -vv %{?_smp_mflags}
 
 %install
-DESTDIR=%{buildroot} ./waf -vv install
+DESTDIR=%{buildroot} %{__python2} ./waf -vv install
 
 %files
 %{_libdir}/%{name}/*/*.[ch]
