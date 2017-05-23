@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:		lv2
-Version:	1.12.0
+Version:	1.14.0
 Release:	1
 Summary:	Audio Plugin Standard
 Group:		System/Libraries
