@@ -62,11 +62,11 @@ Sample plugins for LV2
 %setup -q
 
 %build
-%{__python2} ./waf configure -vv --prefix=%{_prefix} --libdir=%{_libdir} --debug --lv2dir=%{_libdir}/%{name} CC=%{__cc}
-%{__python2} ./waf -vv %{?_smp_mflags}
+python ./waf configure -vv --prefix=%{_prefix} --libdir=%{_libdir} --debug --lv2dir=%{_libdir}/%{name} CC=%{__cc}
+python ./waf -vv %{?_smp_mflags}
 
 %install
-DESTDIR=%{buildroot} %{__python2} ./waf -vv install
+DESTDIR=%{buildroot} python ./waf -vv install
 
 # For compatibility with old releases
 ln -s lv2.pc %{buildroot}%{_libdir}/pkgconfig/lv2core.pc
