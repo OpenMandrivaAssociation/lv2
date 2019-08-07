@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:		lv2
-Version:	1.14.0
-Release:	2
+Version:	1.16.0
+Release:	1
 Summary:	Audio Plugin Standard
 Group:		System/Libraries
 
@@ -50,19 +50,55 @@ Definitive technical documentation on LV2 plug-ins for both the host
 and plug-in is contained within copious comments within the lv2.h
 header file.
 
+%package plugins
+Summary:	Sample plugins for LV2
+Group:		System/Libraries
+Requires:	%{name} = %{EVRD}
+
+%description plugins
+Sample plugins for LV2
+
 %prep
 %setup -q
 
 %build
-%{__python2} ./waf configure -vv --prefix=%{_prefix} --libdir=%{_libdir} --debug --no-plugins --lv2dir=%{_libdir}/%{name} CC=%{__cc}
+%{__python2} ./waf configure -vv --prefix=%{_prefix} --libdir=%{_libdir} --debug --lv2dir=%{_libdir}/%{name} CC=%{__cc}
 %{__python2} ./waf -vv %{?_smp_mflags}
 
 %install
 DESTDIR=%{buildroot} %{__python2} ./waf -vv install
 
+# For compatibility with old releases
+ln -s lv2.pc %{buildroot}%{_libdir}/pkgconfig/lv2core.pc
+
 %files
-%{_libdir}/%{name}/*/*.[ch]
-%{_libdir}/%{name}/*/*.ttl
+%{_bindir}/lv2_validate
+%dir %{_libdir}/%{name}
+%{_libdir}/%{name}/atom.lv2
+%{_libdir}/%{name}/buf-size.lv2
+%{_libdir}/%{name}/core.lv2
+%{_libdir}/%{name}/data-access.lv2
+%{_libdir}/%{name}/dynmanifest.lv2
+%{_libdir}/%{name}/event.lv2
+%{_libdir}/%{name}/instance-access.lv2
+%{_libdir}/%{name}/log.lv2
+%{_libdir}/%{name}/midi.lv2
+%{_libdir}/%{name}/morph.lv2
+%{_libdir}/%{name}/options.lv2
+%{_libdir}/%{name}/parameters.lv2
+%{_libdir}/%{name}/patch.lv2
+%{_libdir}/%{name}/port-groups.lv2
+%{_libdir}/%{name}/port-props.lv2
+%{_libdir}/%{name}/presets.lv2
+%{_libdir}/%{name}/resize-port.lv2
+%{_libdir}/%{name}/schemas.lv2
+%{_libdir}/%{name}/state.lv2
+%{_libdir}/%{name}/time.lv2
+%{_libdir}/%{name}/ui.lv2
+%{_libdir}/%{name}/units.lv2
+%{_libdir}/%{name}/urid.lv2
+%{_libdir}/%{name}/uri-map.lv2
+%{_libdir}/%{name}/worker.lv2
 
 %files devel
 %doc COPYING NEWS
@@ -72,3 +108,12 @@ DESTDIR=%{buildroot} %{__python2} ./waf -vv install
 %{_datadir}/lv2specgen/
 %{_libdir}/pkgconfig/lv2core.pc
 %{_libdir}/pkgconfig/%{name}.pc
+
+%files plugins
+%{_libdir}/%{name}/eg-amp.lv2
+%{_libdir}/%{name}/eg-fifths.lv2
+%{_libdir}/%{name}/eg-metro.lv2
+%{_libdir}/%{name}/eg-midigate.lv2
+%{_libdir}/%{name}/eg-params.lv2
+%{_libdir}/%{name}/eg-sampler.lv2
+%{_libdir}/%{name}/eg-scope.lv2
