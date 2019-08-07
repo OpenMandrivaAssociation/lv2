@@ -2,7 +2,7 @@
 
 Name:		lv2
 Version:	1.16.0
-Release:	1
+Release:	2
 Summary:	Audio Plugin Standard
 Group:		System/Libraries
 
@@ -74,6 +74,7 @@ DESTDIR=%{buildroot} python ./waf -vv install
 
 # For compatibility with old releases
 ln -s lv2.pc %{buildroot}%{_libdir}/pkgconfig/lv2core.pc
+ln -s lv2plug.in/ns/lv2core %{buildroot}%{_includedir}/lv2/core
 
 %files
 %{_bindir}/lv2_validate
