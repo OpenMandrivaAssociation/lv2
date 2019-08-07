@@ -12,6 +12,10 @@ URL:		http://lv2plug.in
 Source0:	http://lv2plug.in/spec/lv2-%{version}.tar.bz2
 Source1:	lv2.rpmlintrc
 
+# For eg-scope plugin -- safe to remove if we remove that sample plugin
+BuildRequires:	pkgconfig(cairo)
+BuildRequires:	pkgconfig(gtk+-2.0)
+
 # this package replaces lv2core
 Provides:	lv2core = 6.0-4
 Obsoletes:	lv2core < 6.0-4
