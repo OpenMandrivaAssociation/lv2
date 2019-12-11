@@ -5,7 +5,7 @@
 
 Name:		lv2
 Version:	1.16.0
-Release:	3
+Release:	4
 Summary:	Audio Plugin Standard
 Group:		System/Libraries
 
