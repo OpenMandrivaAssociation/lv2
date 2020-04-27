@@ -4,8 +4,8 @@
 %global dont_clean_files 1
 
 Name:		lv2
-Version:	1.16.0
-Release:	4
+Version:	1.18.0
+Release:	1
 Summary:	Audio Plugin Standard
 Group:		System/Libraries
 
