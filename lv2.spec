@@ -1,11 +1,10 @@
-%define debug_package %{nil}
 # "Clean files" deletes "core dump" files, such as
 # %{_includedir}/lv2/core...
 %global dont_clean_files 1
 
 Name:		lv2
-Version:	1.18.0
-Release:	1
+Version:	1.18.2
+Release:	2
 Summary:	Audio Plugin Standard
 Group:		System/Libraries
 
@@ -63,10 +62,10 @@ Group:		System/Libraries
 Requires:	%{name} = %{EVRD}
 
 %description plugins
-Sample plugins for LV2
+Sample plugins for LV2.
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 python ./waf configure -vv --prefix=%{_prefix} --libdir=%{_libdir} --debug --lv2dir=%{_libdir}/%{name} CC=%{__cc}
