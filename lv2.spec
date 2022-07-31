@@ -18,6 +18,7 @@ Source1:	lv2.rpmlintrc
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:  python3dist(rdflib)
+BuildRequires:  doxygen
 BuildRequires:  meson
 
 # this package replaces lv2core
