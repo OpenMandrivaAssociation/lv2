@@ -21,6 +21,7 @@ BuildRequires:  python3dist(rdflib)
 BuildRequires:  python3dist(lxml)
 BuildRequires:  python3dist(markdown)
 BuildRequires:  python3dist(pygments)
+BuildRequires:  asciidoc
 BuildRequires:  doxygen
 BuildRequires:  meson
 
