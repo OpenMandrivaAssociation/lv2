@@ -22,6 +22,7 @@ BuildRequires:  python3dist(lxml)
 BuildRequires:  python3dist(markdown)
 BuildRequires:  python3dist(pygments)
 BuildRequires:  python3dist(codespell)
+BuildRequires:  python3dist(flake8)
 BuildRequires:  asciidoc
 BuildRequires:  doxygen
 BuildRequires:  meson
