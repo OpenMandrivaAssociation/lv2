@@ -25,6 +25,7 @@ BuildRequires:  python3dist(codespell)
 BuildRequires:  asciidoc
 BuildRequires:  doxygen
 BuildRequires:  meson
+BuildRequires:  serd
 
 # this package replaces lv2core
 Provides:	lv2core = 6.0-4
