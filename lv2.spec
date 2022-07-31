@@ -18,6 +18,9 @@ Source1:	lv2.rpmlintrc
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:  python3dist(rdflib)
+BuildRequires:  python3dist(lxml)
+BuildRequires:  python3dist(markdown)
+BuildRequires:  python3dist(pygments)
 BuildRequires:  doxygen
 BuildRequires:  meson
 
