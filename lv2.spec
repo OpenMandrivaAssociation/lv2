@@ -11,7 +11,7 @@ Group:		System/Libraries
 # lv2specgen template.html is CC-AT-SA
 License:	ISC
 URL:		http://lv2plug.in
-Source0:	http://lv2plug.in/spec/lv2-%{version}.tar.bz2
+Source0:	http://lv2plug.in/spec/lv2-%{version}.tar.xz
 Source1:	lv2.rpmlintrc
 
 # For eg-scope plugin -- safe to remove if we remove that sample plugin
