@@ -17,6 +17,7 @@ Source1:	lv2.rpmlintrc
 # For eg-scope plugin -- safe to remove if we remove that sample plugin
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:  meson
 
 # this package replaces lv2core
 Provides:	lv2core = 6.0-4
@@ -68,11 +69,11 @@ Sample plugins for LV2.
 %autosetup -p1
 
 %build
-python ./waf configure -vv --prefix=%{_prefix} --libdir=%{_libdir} --debug --lv2dir=%{_libdir}/%{name} CC=%{__cc}
-python ./waf -vv %{?_smp_mflags}
+%meson
+%meson_build
 
 %install
-DESTDIR=%{buildroot} python ./waf -vv install
+%meson_install
 
 # For compatibility with old releases
 ln -s lv2.pc %{buildroot}%{_libdir}/pkgconfig/lv2core.pc
