@@ -121,6 +121,7 @@ ln -s lv2.pc %{buildroot}%{_libdir}/pkgconfig/lv2core.pc
 
 %files devel
 %doc COPYING NEWS
+%doc %{_datadir}/doc/lv2/
 %{_bindir}/lv2specgen.py
 %{_includedir}/%{name}/
 %{_datadir}/lv2specgen/
