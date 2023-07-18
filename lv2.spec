@@ -3,8 +3,8 @@
 %global dont_clean_files 1
 
 Name:		lv2
-Version:	1.18.6
-Release:	2
+Version:	1.18.10
+Release:	1
 Summary:	Audio Plugin Standard
 Group:		System/Libraries
 
@@ -17,6 +17,7 @@ Source1:	lv2.rpmlintrc
 # For eg-scope plugin -- safe to remove if we remove that sample plugin
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:  pkgconfig(samplerate)
 BuildRequires:  python3dist(black)
 BuildRequires:  python3dist(rdflib)
 BuildRequires:  python3dist(lxml)
@@ -124,6 +125,7 @@ ln -s lv2.pc %{buildroot}%{_libdir}/pkgconfig/lv2core.pc
 %doc %{_datadir}/doc/lv2/
 %{_bindir}/lv2specgen.py
 %{_includedir}/%{name}/
+%{_includedir}/lv2.h
 %{_datadir}/lv2specgen/
 %{_libdir}/pkgconfig/lv2core.pc
 %{_libdir}/pkgconfig/%{name}.pc
