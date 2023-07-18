@@ -125,6 +125,7 @@ ln -s lv2.pc %{buildroot}%{_libdir}/pkgconfig/lv2core.pc
 %doc %{_datadir}/doc/lv2/
 %{_bindir}/lv2specgen.py
 %{_includedir}/%{name}/
+%{_includedir}/lv2.h
 %{_datadir}/lv2specgen/
 %{_libdir}/pkgconfig/lv2core.pc
 %{_libdir}/pkgconfig/%{name}.pc
