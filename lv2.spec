@@ -17,6 +17,7 @@ Source1:	lv2.rpmlintrc
 # For eg-scope plugin -- safe to remove if we remove that sample plugin
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:  pkgconfig(samplerate)
 BuildRequires:  python3dist(black)
 BuildRequires:  python3dist(rdflib)
 BuildRequires:  python3dist(lxml)
