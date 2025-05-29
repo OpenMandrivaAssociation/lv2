@@ -4,7 +4,7 @@
 
 Name:		lv2
 Version:	1.18.10
-Release:	1
+Release:	2
 Summary:	Audio Plugin Standard
 Group:		System/Libraries
 
@@ -14,18 +14,18 @@ URL:		https://lv2plug.in
 Source0:	http://lv2plug.in/spec/lv2-%{version}.tar.xz
 Source1:	lv2.rpmlintrc
 
-# For eg-scope plugin -- safe to remove if we remove that sample plugin
+# For eg-sampler and eg-scope plugins -- safe to remove if we remove that sample plugin
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:  pkgconfig(samplerate)
-BuildRequires:  python3dist(black)
-BuildRequires:  python3dist(rdflib)
-BuildRequires:  python3dist(lxml)
-BuildRequires:  python3dist(markdown)
-BuildRequires:  python3dist(pygments)
-BuildRequires:  python3dist(codespell)
-BuildRequires:  python3dist(flake8)
-BuildRequires:  python3dist(pylint)
+BuildRequires:  python%{pyver}dist(black)
+BuildRequires:  python%{pyver}dist(rdflib)
+BuildRequires:  python%{pyver}dist(lxml)
+BuildRequires:  python%{pyver}dist(markdown)
+BuildRequires:  python%{pyver}dist(pygments)
+BuildRequires:  python%{pyver}dist(codespell)
+BuildRequires:  python%{pyver}dist(flake8)
+BuildRequires:  python%{pyver}dist(pylint)
 BuildRequires:  asciidoc
 BuildRequires:  doxygen
 BuildRequires:  meson
@@ -37,6 +37,8 @@ Provides:	lv2core = 6.0-4
 Obsoletes:	lv2core < 6.0-4
 Provides:	lv2-ui = 2.4-5
 Obsoletes:	lv2-ui < 2.4-5
+
+BuildSystem:	meson
 
 %description
 LV2 is a standard for plugins and matching host applications, mainly
@@ -74,20 +76,74 @@ header file.
 Summary:	Sample plugins for LV2
 Group:		System/Libraries
 Requires:	%{name} = %{EVRD}
+Requires:	%{name}-plugin-eg-amp = %{EVRD}
+Requires:	%{name}-plugin-eg-fifths = %{EVRD}
+Requires:	%{name}-plugin-eg-metro = %{EVRD}
+Requires:	%{name}-plugin-eg-midigate = %{EVRD}
+Requires:	%{name}-plugin-eg-params = %{EVRD}
+Suggests:	%{name}-plugin-eg-sampler = %{EVRD}
+Suggests:	%{name}-plugin-eg-scope = %{EVRD}
 
 %description plugins
 Sample plugins for LV2.
 
-%prep
-%autosetup -p1
+%package plugin-eg-amp
+Summary:	Amp sample plugin for LV2
+Group:		System/Libraries
+Requires:	%{name} = %{EVRD}
 
-%build
-%meson
-%meson_build
+%description plugin-eg-amp
+Amp sample plugins for LV2.
 
-%install
-%meson_install
+%package plugin-eg-fifths
+Summary:	Fifths sample plugin for LV2
+Group:		System/Libraries
+Requires:	%{name} = %{EVRD}
 
+%description plugin-eg-fifths
+Fifths sample plugins for LV2.
+
+%package plugin-eg-metro
+Summary:	Metronome sample plugin for LV2
+Group:		System/Libraries
+Requires:	%{name} = %{EVRD}
+
+%description plugin-eg-metro
+Metronome sample plugins for LV2.
+
+%package plugin-eg-midigate
+Summary:	MIDI-Gate sample plugin for LV2
+Group:		System/Libraries
+Requires:	%{name} = %{EVRD}
+
+%description plugin-eg-midigate
+MIDI-Gate sample plugins for LV2.
+
+%package plugin-eg-params
+Summary:	Params sample plugin for LV2
+Group:		System/Libraries
+Requires:	%{name} = %{EVRD}
+
+%description plugin-eg-params
+Params sample plugins for LV2.
+
+%package plugin-eg-sampler
+Summary:	Sampler sample plugin for LV2
+Group:		System/Libraries
+Requires:	%{name} = %{EVRD}
+
+%description plugin-eg-sampler
+Sampler sample plugins for LV2.
+
+%package plugin-eg-scope
+Summary:	Scope sample plugin for LV2
+Group:		System/Libraries
+Requires:	%{name} = %{EVRD}
+
+%description plugin-eg-scope
+Scope sample plugins for LV2.
+
+%install -a
 # For compatibility with old releases
 ln -s lv2.pc %{buildroot}%{_libdir}/pkgconfig/lv2core.pc
 
@@ -131,10 +187,25 @@ ln -s lv2.pc %{buildroot}%{_libdir}/pkgconfig/lv2core.pc
 %{_libdir}/pkgconfig/%{name}.pc
 
 %files plugins
+# Empty legacy package, just pulls in the split-out plugins
+
+%files plugin-eg-amp
 %{_libdir}/%{name}/eg-amp.lv2
+
+%files plugin-eg-fifths
 %{_libdir}/%{name}/eg-fifths.lv2
+
+%files plugin-eg-metro
 %{_libdir}/%{name}/eg-metro.lv2
+
+%files plugin-eg-midigate
 %{_libdir}/%{name}/eg-midigate.lv2
+
+%files plugin-eg-params
 %{_libdir}/%{name}/eg-params.lv2
+
+%files plugin-eg-sampler
 %{_libdir}/%{name}/eg-sampler.lv2
+
+%files plugin-eg-scope
 %{_libdir}/%{name}/eg-scope.lv2
